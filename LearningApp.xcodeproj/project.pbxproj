@@ -18,6 +18,7 @@
 		011B1F5727A567CC00EFCCD4 /* HomeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B1F5627A567CC00EFCCD4 /* HomeViewRow.swift */; };
 		011B1F5927A65EDB00EFCCD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B1F5827A65EDB00EFCCD4 /* ContentView.swift */; };
 		011B1F5B27A6723C00EFCCD4 /* ContentViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B1F5A27A6723C00EFCCD4 /* ContentViewRow.swift */; };
+		011B1F5F27A6851900EFCCD4 /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B1F5E27A6851900EFCCD4 /* ContentDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		011B1F5627A567CC00EFCCD4 /* HomeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRow.swift; sourceTree = "<group>"; };
 		011B1F5827A65EDB00EFCCD4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		011B1F5A27A6723C00EFCCD4 /* ContentViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewRow.swift; sourceTree = "<group>"; };
+		011B1F5E27A6851900EFCCD4 /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				011B1F5627A567CC00EFCCD4 /* HomeViewRow.swift */,
 				011B1F5827A65EDB00EFCCD4 /* ContentView.swift */,
 				011B1F5A27A6723C00EFCCD4 /* ContentViewRow.swift */,
+				011B1F5E27A6851900EFCCD4 /* ContentDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				011B1F3E27A526D300EFCCD4 /* HomeView.swift in Sources */,
 				011B1F5727A567CC00EFCCD4 /* HomeViewRow.swift in Sources */,
 				011B1F3C27A526D300EFCCD4 /* LearningApp.swift in Sources */,
+				011B1F5F27A6851900EFCCD4 /* ContentDetailView.swift in Sources */,
 				011B1F5927A65EDB00EFCCD4 /* ContentView.swift in Sources */,
 				011B1F5B27A6723C00EFCCD4 /* ContentViewRow.swift in Sources */,
 				011B1F4F27A527CA00EFCCD4 /* ContentModel.swift in Sources */,

@@ -13,15 +13,26 @@ struct ContentView: View {
 //    var module: Module
     
     var body: some View {
-        NavigationView {
-            VStack {
+//        NavigationView {
+//            VStack {
                 ScrollView{
                     LazyVStack{
                         //Confirm that currentModule is set
                         if model.currentModule != nil {
+                            
                             ForEach(0..<model.currentModule!.content.lessons.count) { index in
                                 
-                                ContentViewRow(index: index)
+                                NavigationLink(
+                                    destination:
+                                        ContentDetailView()
+                                        .onAppear(perform:{
+                                            model.beginLesson(lessonIndex: index)
+                                        }),
+                                    label:{
+                                        ContentViewRow(index: index)
+                                    
+                                    })
+                                
                             }
                         }
 
@@ -31,8 +42,8 @@ struct ContentView: View {
                 }
             }
             
-        }
-    }
+//        }
+//    }
 }
 
 //struct ContentView_Previews: PreviewProvider {
