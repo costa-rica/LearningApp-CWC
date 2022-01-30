@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct ContentDetailView: View {
     
@@ -13,7 +14,47 @@ struct ContentDetailView: View {
     
     var body: some View {
         let lesson = model.currentLesson
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let url = URL(string: Constants.videoHostUrl + (lesson?.video ?? noVideo()))
+        
+        //lesson?.vidoe ?? "" is the option that in case lesson has not been set yet (i'm guessing becuase perhaps a user can click quicker than the program will load) then the video will just show as blank.
+        VStack {
+            if url != nil {
+                VideoPlayer(player: AVPlayer(url:url!))
+            }
+            // TODO: Description
+            
+            if model.hasNextLesson() {
+                // next lesson button
+                Button(action: {
+                    //Advance lesson
+                    model.nextLesson()
+                }, label:{
+                    //Make resuable rectangle
+                    ZStack {
+                        Rectangle()
+                            .frame(height:48)
+                            .foregroundColor(Color.green)
+                            .cornerRadius(10)
+                            .shadow(radius:5)
+                        Text("Next Lesson: \(model.currentModule!.content.lessons[model.currentLessonIndex + 1].title)")
+                            .foregroundColor(Color.white)
+                            .bold()
+                    }
+
+                })
+
+            }
+
+            
+        }
+        .padding()
+
+        
+    }
+    //MARK: function by NR
+    func noVideo() -> String {
+        print("no video was retrieved")
+        return ""
     }
 }
 

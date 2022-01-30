@@ -40,7 +40,7 @@ struct HomeViewRow: View {
                     //Description
                     Text(description)
                         .padding(.bottom, 20)
-                        .font(Font.system(size: 12))
+                        .font(.caption)
                     
                     //Icons
                     HStack{

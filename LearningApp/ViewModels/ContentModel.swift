@@ -80,7 +80,7 @@ class ContentModel: ObservableObject {
         currentModule = modules[currentModuleIndex]
     }
     
-    func beginLesson ( lessonIndex:Int) {
+    func beginLesson (_ lessonIndex:Int) {
         //check the lesson index is within range of module lessons
         if lessonIndex < currentModule!.content.lessons.count {
             currentLessonIndex = lessonIndex
@@ -91,5 +91,32 @@ class ContentModel: ObservableObject {
         
         //Set the current lesson
         currentLesson = currentModule!.content.lessons[currentLessonIndex]
+    }
+    
+    func nextLesson() {
+        //advance lesson index
+        currentLessonIndex += 1
+        
+        //Check that it is wihtin range
+        if currentLessonIndex < currentModule!.content.lessons.count {
+            //Set the current lesson property
+            currentLesson = currentModule!.content.lessons[currentLessonIndex]
+        }
+        else {
+            // Reset the lesson state
+            currentLessonIndex = 0
+            currentLesson = nil
+        }
+    }
+    
+    func hasNextLesson() -> Bool {
+//        if currentLessonIndex + 1 < currentModule!.content.lessons.count {
+//            return true
+//        }
+//        else {
+//            return false
+//        }
+//        OR
+        return (currentLessonIndex + 1 < currentModule!.content.lessons.count)//this is a bool statement
     }
 }
