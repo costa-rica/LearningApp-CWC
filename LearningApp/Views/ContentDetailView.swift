@@ -21,8 +21,10 @@ struct ContentDetailView: View {
             if url != nil {
                 VideoPlayer(player: AVPlayer(url:url!))
             }
-            // TODO: Description
+            // Description
+            CodeTextView()
             
+            //Show next lesson button, only if there is a next lesson
             if model.hasNextLesson() {
                 // next lesson button
                 Button(action: {
@@ -40,14 +42,33 @@ struct ContentDetailView: View {
                             .foregroundColor(Color.white)
                             .bold()
                     }
-
                 })
-
+            }
+            else {
+                //Show the complete button instead
+                Button(action: {
+                    //Take the user back to the homeview
+                    model.currentContentSelected = nil
+                    
+                }, label:{
+                    //Make resuable rectangle
+                    ZStack {
+                        Rectangle()
+                            .frame(height:48)
+                            .foregroundColor(Color.green)
+                            .cornerRadius(10)
+                            .shadow(radius:5)
+                        Text("Complete")
+                            .foregroundColor(Color.white)
+                            .bold()
+                    }
+                })
             }
 
             
         }
         .padding()
+        .navigationBarTitle(lesson?.title ?? "")
 
         
     }
