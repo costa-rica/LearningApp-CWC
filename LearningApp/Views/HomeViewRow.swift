@@ -39,6 +39,7 @@ struct HomeViewRow: View {
                         .bold()
 
                     Text(description)
+                        .multilineTextAlignment(.leading)
                         .padding(.bottom, 20)
                         .font(Font.system(size:8))
 

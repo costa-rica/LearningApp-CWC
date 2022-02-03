@@ -15,6 +15,7 @@ struct TestView: View {
     @State var submitted = false
     
     var body: some View {
+        
         if model.currentQuestion != nil {
             VStack (alignment: .leading) {
                 
@@ -29,39 +30,40 @@ struct TestView: View {
                 //Answers
                 ScrollView {
                     VStack {
-                        ForEach(0..<model.currentQuestion!.answers.count, id: \.self) {i in
+                        ForEach(0..<model.currentQuestion!.answers.count, id: \.self) {index in
                             Button {
                                 //Track which answer is selected
-                                selectedAnswerIndex=i
+                                selectedAnswerIndex=index
                             } label: {
                                 ZStack {
                                     
                                     if submitted == false {
                                         //in line if statement
-                                        RectangleCard(color: i == selectedAnswerIndex ? .gray : .white)
+                                        RectangleCard(color: index == selectedAnswerIndex ? .gray : .white)
                                             .frame(height:48)
-                                        Text(model.currentQuestion!.answers[i])
+                                       
                                     }
                                     else {
                                         //Answer has been submitted
                                         
                                         //User selected right answer
-                                        if i == selectedAnswerIndex &&
-                                            i == model.currentQuestion!.correctIndex {
+                                        if index == selectedAnswerIndex &&
+                                            index == model.currentQuestion!.correctIndex {
                                             
                                             //Show a green background
                                             RectangleCard(color: Color.green)
                                                 .frame(height: 48)
                                         }
                                         //User selected wrong anser
-                                        else if i == selectedAnswerIndex &&
-                                                    i != model.currentQuestion!.correctIndex {
-                                            //Show a red background
-                                            RectangleCard(color: Color.red)
-                                                .frame(height: 48)
+                                        else if index == selectedAnswerIndex &&
+                                                    index != model.currentQuestion!.correctIndex {
+                                            
+                                        //Show a red background
+                                        RectangleCard(color: Color.red)
+                                            .frame(height: 48)
                                         }
                                         //shows correct answer
-                                        else if i == model.currentQuestion!.correctIndex {
+                                        else if index == model.currentQuestion!.correctIndex {
                                             //show greenbackground
                                             RectangleCard(color: Color.green)
                                                 .frame(height: 48)
@@ -72,7 +74,7 @@ struct TestView: View {
                                         }
                                         
                                     }
-                                    Text(model.currentQuestion!.answers[i])
+                                    Text(model.currentQuestion!.answers[index])
                                 }
                             }
                             .disabled(submitted)
@@ -82,20 +84,33 @@ struct TestView: View {
                     .padding()
                 }
                 
-                //button
+                //Submit button
                 Button{
-                    //Change submitted state to true
-                    submitted = true
-                    
-                    // Check the answer and increment the counter if correct
-                    if selectedAnswerIndex == model.currentQuestion!.correctIndex {
-                        numCorrect += 1
+                    //Check if answer has been submitted
+                    if submitted == true {
+                        //Answer has already been submitted, move to next question
+                        model.nextQuestion()
+                        
+                        //Reset properties
+                        submitted = false
+                        selectedAnswerIndex = nil
                     }
+                    else {
+                        //Change submitted state to true
+                        submitted = true
+                        
+                        // Check the answer and increment the counter if correct
+                        if selectedAnswerIndex == model.currentQuestion!.correctIndex {
+                            numCorrect += 1
+                        }
+                    }
+
                 } label: {
                     ZStack {
                         RectangleCard(color: .green)
                             .frame(height: 48)
-                        Text("Submit")
+                        //Change text from submit to next question using computed property
+                        Text(buttonText)
                             .bold()
                             .foregroundColor(Color.white)
                     }
@@ -107,6 +122,22 @@ struct TestView: View {
         }
         else {
             ProgressView()//This is a spinning view that eventually calls the .onAppear from "destination: TestView().onAppear(perform:" in HomeView
+        }
+    }
+    
+    var buttonText:String {
+        //check if answer has been submitted
+        if submitted == true {
+            if model.currentQuestionIndex + 1 == model.currentModule!.test.questions.count {
+                return "Finish"
+            }
+            else {
+                return "Next"
+            }
+            
+        }
+        else {
+            return "Submit"
         }
     }
 }
