@@ -121,7 +121,8 @@ struct TestView: View {
             .navigationBarTitle("\(model.currentModule?.category ?? "") Test")
         }
         else {
-            ProgressView()//This is a spinning view that eventually calls the .onAppear from "destination: TestView().onAppear(perform:" in HomeView
+            TestResultView(numCorrect: numCorrect)
+//            ProgressView()//This is a spinning view that eventually calls the .onAppear from "destination: TestView().onAppear(perform:" in HomeView
         }
     }
     
