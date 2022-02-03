@@ -37,13 +37,11 @@ struct HomeViewRow: View {
                     //Headline
                     Text(title)
                         .bold()
-                    //Description
-//                    Text("IS this not aligning?")
-                    VStack (alignment:.leading){
-                        Text(description)
-                            .padding(.bottom, 20)
-                            .font(Font.system(size:8))
-                    }
+
+                    Text(description)
+                        .padding(.bottom, 20)
+                        .font(Font.system(size:8))
+
 
                     
                     //Icons
